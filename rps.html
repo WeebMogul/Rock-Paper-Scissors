@@ -4,13 +4,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="rps.css">
     <title>Document</title>
 </head>
 
 <body>
-    <script src="rps.js">
+    <main>
+        <div class="results">
+            <h1>Score Board</h1>
+            <h1 id="humanScore">Human Score : 0</h1>
+            <h1 id="computerScore">Computer Score : 0</h1>
+        </div>
+        <input type="text" value="" readonly id="computerValue">
+        <div id="humanInput">
+            <button type="submit" id="rock" onclick="getHumanChoice('Rock')">Rock</button>
+            <button type="submit" id="paper" onclick="getHumanChoice('Paper')">Paper</button>
+            <button type="submit" id="scissors" onclick="getHumanChoice('Scissors')">Scissors</button>
+        </div>
+    </main>
+    <script src="rps.js"></script>
 
-    </script>
 </body>
 
 </html>

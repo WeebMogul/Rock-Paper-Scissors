@@ -1,4 +1,15 @@
-console.log("Hello World")
+let humanScore = 0;
+let computerScore = 0;
+let rounds = 0
+const maxScore = 5;
+
+let humanBoard = document.getElementById("humanScore");
+let computerBoard = document.getElementById("computerScore");
+const rock = document.getElementById('rock')
+const paper = document.getElementById('paper')
+const scissors = document.getElementById('scissors')
+let computerValue = document.getElementById('computerValue')
+let results = document.querySelector('.results')
 
 function getComputerChoice() {
     let choice = Math.random()
@@ -14,9 +25,9 @@ function getComputerChoice() {
     }
 }
 
-function getHumanChoice() {
-    h_choice = prompt("Which do you pick ?\n - Rock \n - Paper \n - Scissors")
-    return h_choice
+function getHumanChoice(choice) {
+
+    round(choice)
 }
 
 function playRound(humanChoice, computerChoice) {
@@ -33,15 +44,18 @@ function playRound(humanChoice, computerChoice) {
 
 }
 
-humanScore = 0;
-computerScore = 0;
+function disabled() {
+    rock.disabled = true;
+    paper.disabled = true;
+    scissors.disabled = true;
+}
 
-rounds = 0
 
-while (rounds < 5) {
-    const humanSelection = getHumanChoice()
+function round(HumanChoice) {
     const computerSelection = getComputerChoice()
-    result = playRound(humanSelection, computerSelection)
+    computerValue.value = computerSelection;
+
+    result = playRound(HumanChoice, computerSelection)
 
     if (result == "You won") {
         humanScore += 1;
@@ -54,12 +68,21 @@ while (rounds < 5) {
         computerScore += 1;
     }
 
-    rounds++;
-}
+    computerValue.innerHTML = `Computer Score : ${computerScore}`;
+    humanBoard.innerHTML = `Human Score : ${humanScore}`;
+    computerBoard.innerHTML = `Computer Score : ${computerScore}`;
 
-if (humanScore > computerScore) {
-    console.log(`Human Score : ${humanScore}. You Win`)
-}
-else {
-    console.log("You Lose")
+    if (humanScore == maxScore) {
+        let message = document.createElement('h1')
+        message.innerHTML = `You Win`
+        results.appendChild(message)
+
+        disabled()
+    }
+    else if (computerScore == maxScore) {
+        let message = document.createElement('h1')
+        message.innerHTML = `You Lose`
+        results.appendChild(message)
+        disabled()
+    }
 }
